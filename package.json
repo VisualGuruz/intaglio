@@ -1,0 +1,35 @@
+{
+  "name": "intaglio",
+  "version": "0.0.0",
+  "description": "An awesome, define-once, use anywhere ORM.",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "make test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/SinisterMinister/orm.git"
+  },
+  "keywords": [
+    "orm",
+    "mysql"
+  ],
+  "author": "Codey Whitt <codey.whitt@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/SinisterMinister/orm/issues"
+  },
+  "dependencies": {
+    "rsvp": "2.x",
+    "underscore": "1.x",
+    "mysql": "latest",
+    "moment": "latest"
+  },
+  "devDependencies": {
+    "mocha": "1.12.x",
+    "chai": "1.7.x"
+  }
+}
