@@ -1,3 +1,4 @@
+// This is just some test stuff for right meow
 var repositories = require('./lib/repositories');
 
 var repo = repositories.mysql({
@@ -10,8 +11,12 @@ var repo = repositories.mysql({
 });
 
 repo.getSchema().then(function (result) {
-	console.log(result);
-	process.exit(0);
+	repo.find(result.bar).then(function (bar) {
+		console.info(bar);
+		process.exit(0);
+	}, function (err) {
+		console.error('Failed:', err.message);
+	});
 }, function (err) {
 	console.error('Failed:', err.message);
 });
