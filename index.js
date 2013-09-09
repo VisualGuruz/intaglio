@@ -13,10 +13,17 @@ var repo = repositories.mysql({
 repo.getSchema().then(function (result) {
 	repo.find(result.bar).then(function (bar) {
 		console.info(bar);
-		process.exit(0);
-	}, function (err) {
-		console.error('Failed:', err.message);
-	});
-}, function (err) {
+		repo.create(result.bar, {thingy: "Inserted row!"}).then(function (newRow) {
+			console.info(newRow);
+			repo.find(result.bar).then(function (newBar) {
+				console.info(newBar);
+				process.exit(0);
+			}, err);
+		}, err);
+	}, err);
+}, err);
+
+function err(err) {
 	console.error('Failed:', err.message);
-});
+	process.exit(1);
+}
