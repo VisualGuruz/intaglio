@@ -12,18 +12,26 @@ var repo = repositories.mysql({
 
 repo.getSchema().then(function (result) {
 	repo.find(result.bar).then(function (bar) {
-		console.info(bar);
 		repo.create(result.bar, {thingy: "Inserted row!"}).then(function (newRow) {
 			console.info(newRow);
 			repo.find(result.bar).then(function (newBar) {
-				console.info(newBar);
-				process.exit(0);
+				repo.save(result.bar, {thingy: "Updated row!"}, {field: 'id', value: newBar.length}).then(function (up) {
+					console.info(up);
+					repo.find(result.bar).then(function (newerBar) {
+						repo.delete(result.bar, {field: 'id', value: newerBar.length}).then(function (deleteRes) {
+							console.info(deleteRes);
+							repo.find(result.bar).then(function () {
+								process.exit(0);
+							}, err);
+						}, err);
+					}, err);
+				}, err);
 			}, err);
 		}, err);
 	}, err);
 }, err);
 
-function err(err) {
-	console.error('Failed:', err.message);
+function err(error) {
+	console.error('Failed:', error.message);
 	process.exit(1);
 }
