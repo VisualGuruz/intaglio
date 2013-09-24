@@ -9,10 +9,11 @@ var mysqlRepository = new ORM.repositories.mysql({
 });
 
 ORM.create(mysqlRepository).then(function (orm) {
-	orm.factory('bar').find().then(function (data) {
+	orm.factory('bar').findAll().then(function (data) {
 		console.info(data);
 	}, err);
 	orm.factory('bar').find().then(function (data) {
+
 		console.info(data);
 	}, err);
 }).then(null, err);
