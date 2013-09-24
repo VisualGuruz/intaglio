@@ -9,12 +9,27 @@ var mysqlRepository = new ORM.repositories.mysql({
 });
 
 ORM.create(mysqlRepository).then(function (orm) {
-	orm.factory('bar').findAll().then(function (data) {
-		console.info(data);
-	}, err);
-	orm.factory('bar').find().then(function (data) {
+	// orm.factory('bar').findAll().then(function (data) {
+	// 	console.info(data);
+	// }, err);
 
-		console.info(data);
+	// orm.factory('bar').find().then(function (data) {
+	// 	console.info(data);
+	// }, err);
+	// 
+	var foo = orm.factory('foo').create();
+
+	foo.set({
+		bar: 'test',
+		baz: 'testing',
+		hash: '123456',
+		saltedHash: '984930'
+	});
+
+	console.info(foo)
+
+	foo.save().then(function (res) {
+		console.info('Saved!');
 	}, err);
 }).then(null, err);
 
