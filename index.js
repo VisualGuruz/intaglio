@@ -16,7 +16,7 @@ ORM.create(mysqlRepository).then(function (orm) {
 	// orm.factory('bar').find().then(function (data) {
 	// 	console.info(data);
 	// }, err);
-	// 
+	
 	var foo = orm.factory('foo').create();
 
 	foo.set({
@@ -26,11 +26,18 @@ ORM.create(mysqlRepository).then(function (orm) {
 		saltedHash: '984930'
 	});
 
-	console.info(foo)
-
 	foo.save().then(function (res) {
-		console.info('Saved!');
+		console.info('Created!', res);
+		foo.set({
+			bar: 'really tested'
+		}).save().then(function (res) {
+			console.info('Saved!', res);
+		}, err);
 	}, err);
+
+	// orm.factory('foo').where('id').isBetween(2, 7).findAll().then(function (stuff) {
+	// 	console.info(stuff);
+	// }, err);
 }).then(null, err);
 
 function err(error) {
