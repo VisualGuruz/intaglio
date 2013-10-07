@@ -1,6 +1,6 @@
 {
   "name": "intaglio",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "An awesome, define-once, use anywhere ORM.",
   "main": "index.js",
   "directories": {
