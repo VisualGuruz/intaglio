@@ -7,7 +7,7 @@
     "test": "test"
   },
   "scripts": {
-    "test": "make test"
+    "test": "istanbul cover _mocha -- -R spec"
   },
   "repository": {
     "type": "git",
@@ -30,6 +30,7 @@
   },
   "devDependencies": {
     "mocha": "1.12.x",
-    "chai": "1.7.x"
+    "chai": "1.7.x",
+    "istanbul": "~0.1.44"
   }
 }
