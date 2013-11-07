@@ -1,0 +1,40 @@
+{
+  "name": "intaglio",
+  "version": "0.1.0",
+  "description": "An awesome, define-once, use anywhere ORM.",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "istanbul cover _mocha -- -R spec"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/SinisterMinister/orm.git"
+  },
+  "keywords": [
+    "orm",
+    "mysql"
+  ],
+  "author": "Codey Whitt <codey.whitt@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/SinisterMinister/orm/issues"
+  },
+  "dependencies": {
+    "rsvp": "~2.0.4",
+    "underscore": "~1.5.2",
+    "mysql": "~2.0.0-alpha9",
+    "moment": "~2.4.0",
+    "request": "~2.27.0"
+  },
+  "devDependencies": {
+    "mocha": "1.12.x",
+    "chai": "1.7.x",
+    "istanbul": "~0.1.44",
+    "grunt": "~0.4.1",
+    "grunt-browserify": "~1.2.11",
+    "browserify": "~2.35.1"
+  }
+}
