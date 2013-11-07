@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/SinisterMinister/orm.git"
+    "url": "git://github.com/VisualGuruz/intaglio.git"
   },
   "keywords": [
     "orm",
@@ -20,7 +20,7 @@
   "author": "Codey Whitt <codey.whitt@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/SinisterMinister/orm/issues"
+    "url": "https://github.com/VisualGuruz/intaglio/issues"
   },
   "dependencies": {
     "rsvp": "~2.0.4",
