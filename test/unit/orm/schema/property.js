@@ -37,7 +37,7 @@ describe('Property Tests', function () {
 	});
 
 	it('Should store metadata provided at creation and allow you to retrieve it later', function () {
-		var prop = new Schema.Property('foo', {bar: 'baz'});
+		var prop = new Schema.Property('foo', 'string', {bar: 'baz'});
 
 		prop.getMetadata().should.have.property('bar', 'baz');
 	});
