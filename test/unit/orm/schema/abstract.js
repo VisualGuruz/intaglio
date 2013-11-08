@@ -72,6 +72,16 @@ describe('Abstract Schema Object Tests', function () {
 		prop.getName().should.equal('funnyBadger');
 	});
 
+	it('Should give you a pluralized version of the name', function () {
+		var prop;
+
+		prop = new Schema.Property('crazy people');
+		prop.getPluralizedName().should.equal('crazyPeople');
+
+		prop = new Schema.Property('funny badgers');
+		prop.getPluralizedName().should.equal('funnyBadgers');
+	});
+
 	it('Should give you the original name', function () {
 		var prop = new Schema.Property('___bad_snake_case___');
 
