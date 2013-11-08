@@ -27,7 +27,8 @@
     "underscore": "~1.5.2",
     "mysql": "~2.0.0-alpha9",
     "moment": "~2.4.0",
-    "request": "~2.27.0"
+    "request": "~2.27.0",
+    "inflection": "~1.2.6"
   },
   "devDependencies": {
     "mocha": "1.12.x",

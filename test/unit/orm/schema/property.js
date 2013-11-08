@@ -36,7 +36,19 @@ describe('Property Tests', function () {
 		prop.isPrimaryKey().should.be.true;
 	});
 
-	it('Should store metadata provided at creation and allow you to retrieve it later', function () {
+	it('Should have type default to "String"', function () {
+		var prop = new Schema.Property('foo');
+
+		prop.getType().should.equal('String');
+	});
+
+	it('Should take type as an argument on instantiation', function (){
+		var prop = new Schema.Property('foo', 'bar');
+
+		prop.getType().should.equal('bar');
+	});
+
+	it('Should store metadata provided at instantiation and allow you to retrieve it later', function () {
 		var prop = new Schema.Property('foo', 'string', {bar: 'baz'});
 
 		prop.getMetadata().should.have.property('bar', 'baz');
@@ -59,5 +71,26 @@ describe('Property Tests', function () {
 
 		prop.makeRequired();
 		prop.isRequired().should.be.true;
+	});
+
+	it('Should give you a plain object representation', function () {
+		var prop = new Schema.Property('foo');
+
+		prop.getJSON().should.eql({
+			name: 'foo',
+			type: 'String',
+			primaryKey: false,
+			required: false
+		});
+
+		prop.makeRequired();
+		prop.makePrimaryKey();
+
+		prop.getJSON().should.eql({
+			name: 'foo',
+			type: 'String',
+			primaryKey: true,
+			required: true
+		});
 	});
 });

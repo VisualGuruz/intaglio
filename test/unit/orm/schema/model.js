@@ -23,11 +23,16 @@ describe('Model Tests', function () {
 
 	});
 
-	it('Should add a property to the model', function () {
+	it('Should add a property to the model and retrieve all properties that were added', function () {
 		var prop = new Schema.Property('someProperty'),
-			model = new Schema.Model('someModel');
+			prop2 = new Schema.Property('someProperty2'),
+			model = new Schema.Model('someModel'),
+			props;
 
-		model.addProperty(prop)._properties.should.have.property(prop.getName(), prop);
+		props = model.addProperty(prop).addProperty(prop2).getProperties();
+
+		props.should.have.property(prop.getName(), prop);
+		props.should.have.property(prop2.getName(), prop2);
 	});
 
 	it('Should throw an exception if an invalid property is added', function () {
@@ -80,5 +85,40 @@ describe('Model Tests', function () {
 
 		model.getPrimaryKey().should.have.length(2);
 		model.getPrimaryKey().should.include(prop2.getName());
+	});
+
+	it('Should give you a plain object representation', function () {
+		var prop1 = new Schema.Property('someProperty1'),
+			prop2 = new Schema.Property('someProperty2'),
+			prop3 = new Schema.Property('someProperty3'),
+			model = new Schema.Model('someModel');
+
+		prop1.makePrimaryKey();
+
+		model.addProperty(prop1).addProperty(prop2).addProperty(prop3);
+
+		model.getJSON().should.eql({
+			name: "someModel",
+			properties: {
+				someProperty1: {
+					name: 'someProperty1',
+					type: 'String',
+					primaryKey: true,
+					required: false
+				},
+				someProperty2: {
+					name: 'someProperty2',
+					type: 'String',
+					primaryKey: false,
+					required: false
+				},
+				someProperty3: {
+					name: 'someProperty3',
+					type: 'String',
+					primaryKey: false,
+					required: false
+				}
+			}
+		});
 	});
 });
