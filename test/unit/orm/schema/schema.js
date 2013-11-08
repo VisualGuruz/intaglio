@@ -50,5 +50,43 @@ describe('Model Tests', function () {
 		schema.addModel(model0).addModel(model1).getModelNames().should.eql(['someModel0', 'someModel1']);
 	});
 
+	it('Should give you a plain object representation', function () {
+		var schema = new Schema.Schema(),
+			prop1 = new Schema.Property('someProperty1'),
+			prop2 = new Schema.Property('someProperty2'),
+			prop3 = new Schema.Property('someProperty3'),
+			model = new Schema.Model('someModel');
 
+		prop1.makePrimaryKey();
+
+		model.addProperty(prop1).addProperty(prop2).addProperty(prop3);
+
+		schema.addModel(model);
+
+		schema.getJSON().should.eql({
+			someModel: {
+				name: "someModel",
+				properties: {
+					someProperty1: {
+						name: 'someProperty1',
+						type: 'String',
+						primaryKey: true,
+						required: false
+					},
+					someProperty2: {
+						name: 'someProperty2',
+						type: 'String',
+						primaryKey: false,
+						required: false
+					},
+					someProperty3: {
+						name: 'someProperty3',
+						type: 'String',
+						primaryKey: false,
+						required: false
+					}
+				}
+			}
+		});
+	});
 });
