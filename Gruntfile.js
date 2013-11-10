@@ -14,9 +14,15 @@ module.exports = function (grunt) {
 						'node_modules/mysql/**',
 						'node_modules/request/**',
 						'node_modules/underscore/**',
-						'node_modules/rsvp/**',
-						'node_modules/inflection/**'
+						'node_modules/rsvp/**'
 					],
+
+					alias: [
+						'shims/jquery.js:jquery',
+						'shims/underscore.js:underscore',
+						'shims/rsvp.js:rsvp'
+					],
+
 					standalone: 'Intaglio'
 				},
 				dest: 'dist/intaglio.js'
@@ -26,13 +32,23 @@ module.exports = function (grunt) {
 			build: {
 				files: {
 					'dist/intaglio.min.js': ['dist/intaglio.js']
+				},
+				options: {
+					sourceMap: 'dist/intaglio.min.js.map'
 				}
 			}
 		},
+		copy: {
+			bower: {
+				src: ['bower.json'],
+				dest: 'dist/'
+			}
+		}
 	});
 
 	grunt.loadNpmTasks('grunt-browserify');
 	grunt.loadNpmTasks('grunt-contrib-uglify');
+	grunt.loadNpmTasks('grunt-contrib-copy');
 
-	grunt.registerTask('build', ['browserify', 'uglify']);
+	grunt.registerTask('build', ['browserify', 'uglify', 'copy:bower']);
 };
