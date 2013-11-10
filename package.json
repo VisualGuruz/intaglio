@@ -2,7 +2,7 @@
   "name": "intaglio",
   "version": "0.2.0",
   "description": "An awesome, define-once, use anywhere ORM.",
-  "main": "index.js",
+  "main": "intaglio.js",
   "directories": {
     "test": "test"
   },
@@ -36,6 +36,7 @@
     "istanbul": "~0.1.44",
     "grunt": "~0.4.1",
     "grunt-browserify": "~1.2.11",
-    "browserify": "~2.35.1"
+    "browserify": "~2.35.1",
+    "grunt-contrib-uglify": "~0.2.7"
   }
 }
