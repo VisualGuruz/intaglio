@@ -2,17 +2,53 @@ module.exports = function (grunt) {
 	
 	grunt.initConfig({
 		browserify: {
-			client: {
-				src: ['test/demo.js'],
+			build: {
+				src: ['intaglio.js'],
 				options: {
-					ignore: ['node_modules/mysql/**/*']
+					ignore: [
+						// Ignore the nodejs specific stuff
+						'lib/repositories/mysql/**',
+						'lib/repositories/rest/driver/node.js',
+
+						// Ignore certain modules
+						'node_modules/mysql/**',
+						'node_modules/request/**',
+						'node_modules/underscore/**',
+						'node_modules/rsvp/**'
+					],
+
+					alias: [
+						'shims/jquery.js:jquery',
+						'shims/underscore.js:underscore',
+						'shims/rsvp.js:rsvp'
+					],
+
+					standalone: 'Intaglio'
 				},
 				dest: 'dist/intaglio.js'
+			}
+		},
+		uglify: {
+			build: {
+				files: {
+					'dist/intaglio.min.js': ['dist/intaglio.js']
+				},
+				options: {
+					sourceMap: 'dist/intaglio.min.js.map'
+				}
+			}
+		},
+		copy: {
+			bower: {
+				src: ['bower.json'],
+				dest: 'dist/'
 			}
 		}
 	});
 
 	grunt.loadNpmTasks('grunt-browserify');
+	grunt.loadNpmTasks('grunt-contrib-uglify');
+	grunt.loadNpmTasks('grunt-contrib-copy');
 
-	grunt.registerTask('browser-dev', ['browserify']);
+	grunt.registerTask('build', ['browserify', 'uglify', 'copy:bower']);
 };

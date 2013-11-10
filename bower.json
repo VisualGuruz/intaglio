@@ -1,0 +1,19 @@
+{
+  "name": "intaglio",
+  "main": "intaglio.js",
+  "version": "0.2.1",
+  "homepage": "https://github.com/VisualGuruz/intaglio",
+  "authors": [
+    "Codey Whitt <codey.whitt@pearson.com>"
+  ],
+  "description": "An awesome, define-once, use anywhere ORM.",
+  "keywords": [
+    "orm"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "jquery": "~2.0.3",
+    "rsvp": "~2.0.4",
+    "underscore": "~1.5.2"
+  }
+}
