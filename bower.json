@@ -1,7 +1,7 @@
 {
   "name": "intaglio",
   "main": "intaglio.js",
-  "version": "0.2.1",
+  "version": "0.2.5",
   "homepage": "https://github.com/VisualGuruz/intaglio",
   "authors": [
     "Codey Whitt <codey.whitt@pearson.com>"
