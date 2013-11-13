@@ -18,7 +18,6 @@ module.exports = function (grunt) {
 					],
 
 					alias: [
-						'shims/jquery.js:jquery',
 						'shims/underscore.js:underscore',
 						'shims/rsvp.js:rsvp'
 					],
