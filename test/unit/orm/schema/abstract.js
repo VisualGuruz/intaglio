@@ -4,16 +4,6 @@ var Schema = require('./../../../../lib/orm/schema'),
 	expect = require('chai').expect;
 
 describe('Abstract Schema Object Tests', function () {
-	var mockClass = Schema.Abstract.extend({
-		init: function (name, metadata) {
-			// Set the name of the object
-			this._setName(name);
-
-			// Store the metadata
-			this._metadata = metadata || {};
-		}
-	});
-
 	it('Should not allow you to directly instantiate', function () {
 		var testFn = function () {var obj = new Schema.Abstract('someName');};
 
@@ -80,6 +70,9 @@ describe('Abstract Schema Object Tests', function () {
 
 		prop = new Schema.Property('funny badgers');
 		prop.getPluralizedName().should.equal('funnyBadgers');
+
+        prop = new Schema.Property('thing');
+        prop.getPluralizedName().should.equal('things');
 	});
 
 	it('Should give you the original name', function () {

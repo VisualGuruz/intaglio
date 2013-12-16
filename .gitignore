@@ -2,3 +2,5 @@ node_modules
 coverage
 dist
 bower_components
+.idea
+*.iml
