@@ -39,6 +39,8 @@
     "grunt-browserify": "~1.2.11",
     "browserify": "~2.35.1",
     "grunt-contrib-uglify": "~0.2.7",
-    "grunt-contrib-copy": "~0.4.1"
+    "grunt-contrib-copy": "~0.4.1",
+    "chai-as-promised": "~4.1.0",
+    "mocha-as-promised": "~2.0.0"
   }
 }
