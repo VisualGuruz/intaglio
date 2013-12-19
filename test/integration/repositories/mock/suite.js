@@ -1,5 +1,5 @@
 var MockRepository = require('./../../../../lib/repositories/mock'),
-	TestSuite = require('./../suite')
+	TestSuite = require('./../suite'),
 	data = require('./../../../mock-data/data.json'),
 	schema = require('./../../../mock-data/schema.json');
 

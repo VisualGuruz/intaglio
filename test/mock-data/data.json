@@ -22,7 +22,7 @@
 			"id": 4,
 			"first_name": "Lionel",
 			"last_name": "Adams",
-			"email": "Aliquam.erat@auctorveliteget.net"
+			"email": null
 		},
 		{
 			"id": 5,
@@ -52,7 +52,7 @@
 			"id": 9,
 			"first_name": "Kaitlin",
 			"last_name": "Brooks",
-			"email": "facilisis.eget.ipsum@fringillapurusmauris.edu"
+			"email": null
 		},
 		{
 			"id": 10,
@@ -64,7 +64,7 @@
 			"id": 11,
 			"first_name": "Karly",
 			"last_name": "Mcgee",
-			"email": "primis.in.faucibus@senectusetnetus.ca"
+			"email": null
 		},
 		{
 			"id": 12,
