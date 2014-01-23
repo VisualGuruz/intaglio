@@ -8,6 +8,6 @@ RSVP.configure('onerror', function (error) {
 module.exports = {
 	repositories: require('./lib/repositories'),
 	ORM: require('./lib/orm'),
-	wrappers: require('./lib/wrappers'),
+	decorators: require('./lib/decorators'),
 	utils: require('./lib/utils')
 };
