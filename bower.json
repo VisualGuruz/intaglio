@@ -1,7 +1,7 @@
 {
   "name": "intaglio",
   "main": "intaglio.js",
-  "version": "0.2.5",
+  "version": "0.4.0-rc",
   "homepage": "https://github.com/VisualGuruz/intaglio",
   "authors": [
     "Codey Whitt <codey.whitt@pearson.com>"
@@ -13,7 +13,7 @@
   "license": "MIT",
   "dependencies": {
     "jquery": "~2.0.3",
-    "rsvp": "~2.0.4",
+    "rsvp": "~3.0.0",
     "underscore": "~1.5.2"
   }
 }
