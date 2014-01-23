@@ -1,0 +1,68 @@
+{
+	"people": {
+		"name": "people",
+		"properties": {
+			"id": {
+				"name": "id",
+				"type": "int",
+				"primaryKey": true,
+				"required": false,
+				"autoIncrement": true
+			},
+			"first_name": {
+				"name": "first_name",
+				"type": "string",
+				"primaryKey": false,
+				"required": true,
+				"autoIncrement": false
+			},
+			"last_name": {
+				"name": "last_name",
+				"type": "string",
+				"primaryKey": false,
+				"required": true,
+				"autoIncrement": false
+			},
+			"email": {
+				"name": "email",
+				"type": "string",
+				"primaryKey": false,
+				"required": true,
+				"autoIncrement": false
+			}
+		}
+	},
+	"photos": {
+		"name": "photos",
+		"properties": {
+			"id": {
+				"name": "id",
+				"type": "int",
+				"primaryKey": true,
+				"required": false,
+				"autoIncrement": true
+			},
+			"person_id": {
+				"name": "person_id",
+				"type": "int",
+				"primaryKey": false,
+				"required": true,
+				"autoIncrement": false
+			},
+			"guid": {
+				"name": "guid",
+				"type": "string",
+				"primaryKey": false,
+				"required": true,
+				"autoIncrement": false
+			},
+			"date_created": {
+				"name": "date_created",
+				"type": "date",
+				"primaryKey": false,
+				"required": true,
+				"autoIncrement": false
+			}
+		}
+	}
+}

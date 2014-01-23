@@ -8,7 +8,10 @@ module.exports = function (grunt) {
 					ignore: [
 						// Ignore the nodejs specific stuff
 						'lib/repositories/mysql/**',
-						'lib/repositories/rest/driver/node.js',
+
+						// Ignore the mocks
+						'lib/repositories/mock/**',
+						'lib/repositories/rest/driver/mock.js',
 
 						// Ignore certain modules
 						'node_modules/mysql/**',

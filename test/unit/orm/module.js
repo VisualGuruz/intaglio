@@ -1,0 +1,1 @@
+var ormModule = require('./../../../lib/orm/index');

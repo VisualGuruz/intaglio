@@ -1,5 +1,5 @@
-var Schema = require('./../../../../lib/orm/schema'),
-	utils = require('./../../../../lib/utils'),
+var Schema = require('./../../../lib/schema'),
+	utils = require('./../../../lib/utils'),
 	should = require('chai').should(),
 	expect = require('chai').expect;
 
@@ -78,13 +78,13 @@ describe('Model Tests', function () {
 		model.addProperty(prop1).addProperty(prop2).addProperty(prop3);
 
 		model.getPrimaryKey().should.have.length(1);
-		model.getPrimaryKey().should.contain(prop1.getName());
+		model.getPrimaryKey().should.contain(prop1);
 
 		// Handle multiple key PKs
 		prop2.makePrimaryKey();
 
 		model.getPrimaryKey().should.have.length(2);
-		model.getPrimaryKey().should.include(prop2.getName());
+		model.getPrimaryKey().should.include(prop2);
 	});
 
 	it('Should give you a plain object representation', function () {
@@ -97,7 +97,7 @@ describe('Model Tests', function () {
 
 		model.addProperty(prop1).addProperty(prop2).addProperty(prop3);
 
-		model.getJSON().should.eql({
+		model.getPOJO().should.eql({
 			name: "someModel",
 			properties: {
 				someProperty1: {

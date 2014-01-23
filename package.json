@@ -1,6 +1,6 @@
 {
   "name": "intaglio",
-  "version": "0.3.2",
+  "version": "0.4.0",
   "description": "An awesome, define-once, use anywhere ORM.",
   "main": "intaglio.js",
   "directories": {
@@ -24,21 +24,23 @@
     "url": "https://github.com/VisualGuruz/intaglio/issues"
   },
   "dependencies": {
-    "rsvp": "~2.0.4",
+    "rsvp": "~3.0.0",
     "underscore": "~1.5.2",
-    "mysql": "~2.0.0-alpha9",
+    "mysql": "~2.0.1",
     "moment": "~2.4.0",
     "request": "~2.27.0",
     "inflection": "~1.2.6"
   },
   "devDependencies": {
-    "mocha": "1.12.x",
-    "chai": "1.7.x",
-    "istanbul": "~0.1.44",
+    "mocha": "1.17.x",
+    "chai": "1.8.x",
+    "istanbul": "~0.2.3",
     "grunt": "~0.4.1",
     "grunt-browserify": "~1.2.11",
     "browserify": "~2.35.1",
     "grunt-contrib-uglify": "~0.2.7",
-    "grunt-contrib-copy": "~0.4.1"
+    "grunt-contrib-copy": "~0.4.1",
+    "chai-as-promised": "~4.1.0",
+    "mocha-as-promised": "~2.0.0"
   }
 }

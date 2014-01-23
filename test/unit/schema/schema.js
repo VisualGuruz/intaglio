@@ -1,5 +1,5 @@
-var Schema = require('./../../../../lib/orm/schema'),
-	utils = require('./../../../../lib/utils'),
+var Schema = require('./../../../lib/schema'),
+	utils = require('./../../../lib/utils'),
 	should = require('chai').should(),
 	expect = require('chai').expect;
 
@@ -63,7 +63,7 @@ describe('Model Tests', function () {
 
 		schema.addModel(model);
 
-		schema.getJSON().should.eql({
+		schema.getPOJO().should.eql({
 			someModel: {
 				name: "someModel",
 				properties: {
