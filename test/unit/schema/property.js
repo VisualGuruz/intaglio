@@ -1,5 +1,5 @@
-var Schema = require('./../../../../lib/orm/schema'),
-	utils = require('./../../../../lib/utils'),
+var Schema = require('./../../../lib/schema'),
+	utils = require('./../../../lib/utils'),
 	should = require('chai').should(),
 	expect = require('chai').expect;
 
@@ -76,7 +76,7 @@ describe('Property Tests', function () {
 	it('Should give you a plain object representation', function () {
 		var prop = new Schema.Property('foo');
 
-		prop.getJSON().should.eql({
+		prop.getPOJO().should.eql({
 			name: 'foo',
 			type: 'String',
 			primaryKey: false,
@@ -86,7 +86,7 @@ describe('Property Tests', function () {
 		prop.makeRequired();
 		prop.makePrimaryKey();
 
-		prop.getJSON().should.eql({
+		prop.getPOJO().should.eql({
 			name: 'foo',
 			type: 'String',
 			primaryKey: true,

@@ -1,6 +1,6 @@
 var utils = require('./../../../../lib/utils'),
 	RSVP = require('rsvp'),
-	Schema = require('./../../../../lib/orm/schema'),
+	Schema = require('./../../../../lib/schema'),
 	chai = require('chai'),
 	should = chai.should(),
 	expect = chai.expect,

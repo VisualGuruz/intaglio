@@ -1,5 +1,5 @@
-var Schema = require('./../../../../lib/orm/schema'),
-	utils = require('./../../../../lib/utils'),
+var Schema = require('./../../../lib/schema'),
+	utils = require('./../../../lib/utils'),
 	should = require('chai').should(),
 	expect = require('chai').expect;
 
