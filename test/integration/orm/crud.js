@@ -36,6 +36,22 @@ describe('CRUD Operations', function () {
 			});
 		});
 
+		it('Should get a specific model from the repository by passing the pk into find()', function () {
+			return orm.factory('person').find(7).then(function (person) {
+				expect(person).to.exist;
+				expect(person).to.be.an.instanceOf(orm.getClass('person'));
+				expect(person.get('id')).to.equal(7);
+			});
+		});
+
+		it('Should get a specific model from the repository by passing an object of KVPs into find()', function () {
+			return orm.factory('person').find({id: 7}).then(function (person) {
+				expect(person).to.exist;
+				expect(person).to.be.an.instanceOf(orm.getClass('person'));
+				expect(person.get('id')).to.equal(7);
+			});
+		});
+
 		it('Should get a specific model from the repository with a single where', function () {
 			return orm.factory('person').where('id').isEqual(7).find().then(function (person) {
 				expect(person).to.exist;
@@ -49,6 +65,83 @@ describe('CRUD Operations', function () {
 				expect(person).to.exist;
 				expect(person).to.be.an.instanceOf(orm.getClass('person'));
 				expect(person.get('id')).to.equal(4);
+			});
+		});
+
+		it('Should get all models from the repository', function () {
+			return orm.factory('photo').findAll().then(function (photos) {
+				var keys = [],
+					expectedKeys = [];
+
+				_.each(photos, function (photo) {
+					keys.push(photo.get('id'));
+				});
+
+				_.each(data.photos, function (photo) {
+					expectedKeys.push(photo.id);
+				});
+
+				expect(photos).to.exist;
+				expect(photos).to.have.length(data.photos.length);
+				expect(keys).to.include.members(expectedKeys);
+			});
+		});
+
+		it('Should limit the number of records returned', function () {
+			return orm.factory('photo').limit(5).findAll().then(function (photos) {
+				var keys = [],
+					expectedKeys = [];
+
+				_.each(photos, function (photo) {
+					keys.push(photo.get('id'));
+				});
+
+				_.each(data.photos, function (photo) {
+					expectedKeys.push(photo.id);
+				});
+
+				expect(photos).to.exist;
+				expect(photos).to.have.length(5);
+				expect(keys).to.include.members(expectedKeys.slice(0,5));
+			});
+		});
+
+		it('Should offset the records returned from a limited result set', function () {
+			return orm.factory('photo').limit(5).offset(10).findAll().then(function (photos) {
+				var keys = [],
+					expectedKeys = [];
+
+				_.each(photos, function (photo) {
+					keys.push(photo.get('id'));
+				});
+
+				_.each(data.photos, function (photo) {
+					expectedKeys.push(photo.id);
+				});
+
+				expect(photos).to.exist;
+				expect(photos).to.have.length(5);
+				expect(keys).to.include.members(expectedKeys.slice(10,5));
+			});
+		});
+
+		it('Should order the result set by a key', function () {
+			return orm.factory('photo').limit(5).orderBy('id', 'descending').findAll().then(function (photos) {
+				var keys = [],
+					rawPhotos = JSON.parse(JSON.stringify(data)).photos.reverse(),
+					expectedKeys = [];
+
+				_.each(photos, function (photo) {
+					keys.push(photo.get('id'));
+				});
+
+				_.each(rawPhotos, function (photo) {
+					expectedKeys.push(photo.id);
+				});
+
+				expect(photos).to.exist;
+				expect(photos).to.have.length(5);
+				expect(keys).to.include.members(expectedKeys.slice(0,5));
 			});
 		});
 
