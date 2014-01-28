@@ -239,7 +239,7 @@ describe('CRUD Operations', function () {
 
 			// Stage the data then start the test
 			return orm.factory('person').create(data).save().then(function (person) {
-				id = person.get('id')
+				id = person.get('id');
 				return orm.factory('person').where('id').isEqual(id).find();
 			}).then(function (person) {
 				return person.delete();

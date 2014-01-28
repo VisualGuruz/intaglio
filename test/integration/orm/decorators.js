@@ -54,7 +54,7 @@ describe('Decorators', function () {
 		// Decorate again
 		orm.decorate({
 			decoration: function () {
-				var ret = this.decoration.apply(this, arguments);
+				var ret = this._super.apply(this, arguments);
 
 				expect(spy.callCount).to.equal(1);
 				spy();
@@ -76,7 +76,7 @@ describe('Decorators', function () {
 		orm.decorate({
 			get: function () {
 				spy();
-				return this.get.apply(this, arguments);
+				return this._super.apply(this, arguments);
 			}
 		});
 
