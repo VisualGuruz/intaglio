@@ -93,4 +93,46 @@ describe('Property Tests', function () {
 			required: true
 		});
 	});
+
+	it('Should leave camelCase names alone', function () {
+		var prop = new Schema.Property('camelCase');
+
+		prop.getName().should.equal('camelCase');
+	});
+
+	it('Should normalize a snake_case name into camelCase', function () {
+		var prop = new Schema.Property('snake_case');
+
+		prop.getName().should.equal('snakeCase');
+	});
+
+	it('Should normalize a name with spaces into camelCase', function () {
+		var prop = new Schema.Property('space case');
+
+		prop.getName().should.equal('spaceCase');
+	});
+
+	it('Should normalize names with multiple spaces into camelCase', function () {
+		var prop = new Schema.Property(' space  case ');
+
+		prop.getName().should.equal('spaceCase');
+	});
+
+	it('Should normalize names with multiple underscores into camelCase', function () {
+		var prop = new Schema.Property('___bad_snake__case___');
+
+		prop.getName().should.equal('badSnakeCase');
+	});
+
+	it('Should give you the original name', function () {
+		var prop = new Schema.Property('___bad_snake_case___');
+
+		prop.getOriginalName().should.equal('___bad_snake_case___');
+	});
+
+	it('Should not singularize the name', function () {
+		var prop = new Schema.Property('cars');
+
+		prop.getName().should.equal('cars');
+	});
 });
