@@ -61,9 +61,16 @@ describe('Model Tests', function () {
 
 	it('Should get a property that has been added by name', function () {
 		var prop = new Schema.Property('someProperty'),
+			pluralProp = new Schema.Property('pluralProperties'),
 			model = new Schema.Model('someModel');
 
-		model.addProperty(prop).getProperty('someProperty').should.equal(prop);
+		model.addProperty(prop).addProperty(pluralProp);
+
+		expect(model.getProperty('someProperty')).to.be.an.instanceOf(Schema.Property);
+		model.getProperty('someProperty').should.equal(prop);
+
+		expect(model.getProperty('pluralProperties')).to.be.an.instanceOf(Schema.Property);
+		model.getProperty('pluralProperties').should.equal(pluralProp);
 	});
 
 	it('Should get the primary key for the model', function () {
