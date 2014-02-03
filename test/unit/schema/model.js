@@ -87,6 +87,77 @@ describe('Model Tests', function () {
 		model.getPrimaryKey().should.include(prop2);
 	});
 
+	it('Should leave camelCase names alone', function () {
+		var model = new Schema.Model('camelCase');
+
+		model.getName().should.equal('camelCase');
+	});
+
+	it('Should normalize a snake_case name into camelCase', function () {
+		var model = new Schema.Model('snake_case');
+
+		model.getName().should.equal('snakeCase');
+	});
+
+	it('Should normalize a name with spaces into camelCase', function () {
+		var model = new Schema.Model('space case');
+
+		model.getName().should.equal('spaceCase');
+	});
+
+	it('Should normalize names with multiple spaces into camelCase', function () {
+		var model = new Schema.Model(' space  case ');
+
+		model.getName().should.equal('spaceCase');
+	});
+
+	it('Should normalize names with multiple underscores into camelCase', function () {
+		var model = new Schema.Model('___bad_snake__case___');
+
+		model.getName().should.equal('badSnakeCase');
+	});
+
+	it('Should give you the original name', function () {
+		var model = new Schema.Model('___bad_snake_case___');
+
+		model.getOriginalName().should.equal('___bad_snake_case___');
+	});
+
+	it('Should singularize names', function () {
+		var model;
+
+		model = new Schema.Model('users');
+		model.getName().should.equal('user');
+
+		model = new Schema.Model('people');
+		model.getName().should.equal('person');
+
+		model = new Schema.Model('applications');
+		model.getName().should.equal('application');
+
+		model = new Schema.Model('apps');
+		model.getName().should.equal('app');
+
+		model = new Schema.Model('crazy people');
+		model.getName().should.equal('crazyPerson');
+
+		model = new Schema.Model('funny badgers');
+		model.getName().should.equal('funnyBadger');
+	});
+
+	it('Should give you a pluralized version of the name', function () {
+		var model;
+
+		model = new Schema.Model('crazy people');
+		model.getPluralizedName().should.equal('crazyPeople');
+
+		model = new Schema.Model('funny badgers');
+		model.getPluralizedName().should.equal('funnyBadgers');
+
+		model = new Schema.Model('thing');
+		model.getPluralizedName().should.equal('things');
+	});
+
 	it('Should give you a plain object representation', function () {
 		var prop1 = new Schema.Property('someProperty1'),
 			prop2 = new Schema.Property('someProperty2'),
