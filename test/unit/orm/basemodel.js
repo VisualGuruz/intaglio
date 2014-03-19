@@ -9,7 +9,16 @@ var BaseModel = require('./../../../lib/orm/basemodel'),
 
 // Trickery to get our own copy so that this test doesn't affect others
 var data = JSON.parse(JSON.stringify(rawData)),
-	repo = new MockRepository(schema, data);
+	repo = new MockRepository(schema, data),
+	MockORM = utils.Class.extend({
+		_events: null,
+		init: function (events) {
+			this._events = events || {};
+		},
+		getEventHandlers: function (event) {
+			return this._events[event];
+		}
+	});
 
 describe('BaseModel Object Tests', function () {
 	var MockClass = BaseModel.extend({
@@ -17,6 +26,7 @@ describe('BaseModel Object Tests', function () {
 			this._model = mocks.model;
 			this._repository = mocks.repository;
 			this._logger = mocks.logger;
+			this._orm = mocks.orm;
 
 			this.setup(5, mocks.data);
 		}
@@ -73,7 +83,8 @@ describe('BaseModel Object Tests', function () {
 						model: schema.getModel('person'),
 						repository: repo,
 						logger: console,
-						data: baseData
+						data: baseData,
+						orm: new MockORM()
 					});
 
 				testObj.set('id', 999);
@@ -96,7 +107,8 @@ describe('BaseModel Object Tests', function () {
 					model: schema.getModel('person'),
 					repository: repo,
 					logger: console,
-					data: baseData
+					data: baseData,
+					orm: new MockORM()
 				});
 
 			testObj.set('id', 999);
@@ -188,14 +200,19 @@ describe('BaseModel Object Tests', function () {
 		it('Should fire each event handler when the event is triggered', function () {
 			return repo.getSchema().then(function (schema) {
 				var baseData = data.people[0],
+					eventHandler0 = sinon.spy(),
+					eventHandler1 = sinon.spy(),
+					eventHandler2 = sinon.spy(),
+					orm = new MockORM({
+						test: [eventHandler2]
+					}),
 					testObj = new MockClass({
 						model: schema.getModel('person'),
 						repository: repo,
 						logger: console,
-						data: baseData
-					}),
-					eventHandler0 = sinon.spy(),
-					eventHandler1 = sinon.spy();
+						data: baseData,
+						orm: orm
+					});
 
 				testObj.on('test', eventHandler0);
 				testObj.on('test', eventHandler1);
@@ -204,20 +221,26 @@ describe('BaseModel Object Tests', function () {
 
 				expect(eventHandler0.calledOnce).to.be.true;
 				expect(eventHandler1.calledOnce).to.be.true;
+				expect(eventHandler2.calledOnce).to.be.true;
 			});
 		});
 
 		it('Should fire event handlers for multiple triggers', function () {
 			return repo.getSchema().then(function (schema) {
 				var baseData = data.people[0],
+					eventHandler0 = sinon.spy(),
+					eventHandler1 = sinon.spy(),
+					eventHandler2 = sinon.spy(),
+					orm = new MockORM({
+						test: [eventHandler2]
+					}),
 					testObj = new MockClass({
 						model: schema.getModel('person'),
 						repository: repo,
 						logger: console,
-						data: baseData
-					}),
-					eventHandler0 = sinon.spy(),
-					eventHandler1 = sinon.spy();
+						data: baseData,
+						orm: orm
+					});
 
 				testObj.on('test', eventHandler0);
 				testObj.on('test', eventHandler1);
@@ -227,6 +250,7 @@ describe('BaseModel Object Tests', function () {
 
 				expect(eventHandler0.calledTwice).to.be.true;
 				expect(eventHandler1.calledTwice).to.be.true;
+				expect(eventHandler2.calledTwice).to.be.true;
 			});
 		});
 
@@ -237,7 +261,8 @@ describe('BaseModel Object Tests', function () {
 						model: schema.getModel('person'),
 						repository: repo,
 						logger: console,
-						data: baseData
+						data: baseData,
+						orm: new MockORM()
 					});
 
 				testObj.trigger('test');
@@ -253,7 +278,8 @@ describe('BaseModel Object Tests', function () {
 						model: schema.getModel('person'),
 						repository: repo,
 						logger: console,
-						data: baseData
+						data: baseData,
+						orm: new MockORM()
 					});
 
 
@@ -274,7 +300,8 @@ describe('BaseModel Object Tests', function () {
 						model: schema.getModel('person'),
 						repository: repo,
 						logger: console,
-						data: baseData
+						data: baseData,
+						orm: new MockORM()
 					});
 
 				return testObj.delete();
@@ -294,7 +321,8 @@ describe('BaseModel Object Tests', function () {
 						model: schema.getModel('person'),
 						repository: repo,
 						logger: console,
-						data: baseData
+						data: baseData,
+						orm: new MockORM()
 					});
 
 				return testObj.delete();
