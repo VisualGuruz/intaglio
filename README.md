@@ -111,7 +111,7 @@ ORM.factory('user').create({
     firstName: "Walter",
     lastName: "Sobchak",
     email: "walter@lebowski.com"
-}).then(function (user) {
+}).save().then(function (user) {
     console.info('User created with an ID of', user.get('id'));
 });
 ```
