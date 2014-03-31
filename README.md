@@ -1,5 +1,7 @@
 # Intaglio
 
+**Note: These docs are in the process of being written. The code examples are up to date, but not exhaustive.**
+
 Intaglio is an awesome, define-once, use anywhere ORM. The goals of this project are to make an easy to use, persistence independent ORM for JavaScript that can be used in the front or back end to make rapid prototyping and development a breeze. Intaglio takes an ActiveRecord style approach to defining models by allowing your repositories (persistent storage handlers) to define the schema.
 
 ## Installation
