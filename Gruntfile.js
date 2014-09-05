@@ -4,6 +4,7 @@ module.exports = function (grunt) {
 		browserify: {
 			build: {
 				src: ['intaglio.js'],
+				dest: 'dist/intaglio.js',
 				options: {
 					ignore: [
 						// Ignore the nodejs specific stuff
@@ -16,18 +17,15 @@ module.exports = function (grunt) {
 						// Ignore certain modules
 						'node_modules/mysql/**',
 						'node_modules/request/**',
-						'node_modules/underscore/**',
-						'node_modules/rsvp/**'
 					],
 
 					alias: [
-						'shims/underscore.js:underscore',
-						'shims/rsvp.js:rsvp'
+						'./shims/underscore.js:underscore',
+						'./shims/rsvp.js:rsvp'
 					],
 
 					standalone: 'Intaglio'
-				},
-				dest: 'dist/intaglio.js'
+				}
 			}
 		},
 		uglify: {
