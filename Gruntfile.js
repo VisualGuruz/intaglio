@@ -7,24 +7,24 @@ module.exports = function (grunt) {
 				dest: 'dist/intaglio.js',
 				options: {
 					ignore: [
+						// Ignore certain modules
+						'mysql',
+						'request',
+
 						// Ignore the nodejs specific stuff
-						'lib/repositories/mysql/**',
+						'./lib/repositories/mysql/**/*',
 
 						// Ignore the mocks
-						'lib/repositories/mock/**',
-						'lib/repositories/rest/driver/mock.js',
-
-						// Ignore certain modules
-						'node_modules/mysql/**',
-						'node_modules/request/**',
+						'./lib/repositories/mock/**',
+						'./lib/repositories/rest/driver/mock.js',
 					],
-
 					alias: [
 						'./shims/underscore.js:underscore',
 						'./shims/rsvp.js:rsvp'
 					],
-
-					standalone: 'Intaglio'
+					browserifyOptions: {
+						standalone: 'Intaglio'
+					}
 				}
 			}
 		},

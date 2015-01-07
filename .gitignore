@@ -5,3 +5,4 @@ bower_components
 .idea
 *.iml
 atlassian-ide-plugin.xml
+npm-debug.log
